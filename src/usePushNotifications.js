@@ -5,6 +5,8 @@ import * as serviceWorker from './serviceWorker';
 const pushNotificationSupported = serviceWorker.isPushNotificationSupported();
 // check push notifications are supported by the browser
 
+const API_URL = 'https://demo-be-push-notify.onrender.com/subscription'
+
 export default function usePushNotifications() {
   const [userConsent, setSuserConsent] = useState(Notification.permission);
   //to manage the user consent: Notification.permission is a JavaScript native function that return the current state of the permission
@@ -100,7 +102,7 @@ export default function usePushNotifications() {
     setLoading(true);
     setError(false);
     axios
-      .post('https://demo-be-push-notify.onrender.com/subscription', { data: userSubscription })
+      .post(API_URL, { data: userSubscription })
       .then(function (response) {
         setPushServerSubscriptionId(response.data.id);
         setLoading(false);
@@ -117,7 +119,7 @@ export default function usePushNotifications() {
   const onClickSendNotification = async () => {
     setLoading(true);
     setError(false);
-    axios.get(`https://demo-be-push-notify.onrender.com/subscription/${pushServerSubscriptionId}`).catch((error) => {
+    axios.get(`${API_URL}/${pushServerSubscriptionId}`).catch((error) => {
       setLoading(false);
       setError(error);
     });
