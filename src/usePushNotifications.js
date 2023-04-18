@@ -72,7 +72,7 @@ export default function usePushNotifications() {
     setError(false);
     serviceWorker
       .createNotificationSubscription()
-      .then(function(subscrition) {
+      .then(function (subscrition) {
         setUserSubscription(subscrition);
         setLoading(false);
       })
@@ -100,8 +100,8 @@ export default function usePushNotifications() {
     setLoading(true);
     setError(false);
     axios
-      .post('http://localhost:4000/subscription', { data: userSubscription })
-      .then(function(response) {
+      .post('https://demo-be-push-notify.onrender.com/subscription', { data: userSubscription })
+      .then(function (response) {
         setPushServerSubscriptionId(response.data.id);
         setLoading(false);
       })
@@ -117,7 +117,7 @@ export default function usePushNotifications() {
   const onClickSendNotification = async () => {
     setLoading(true);
     setError(false);
-    axios.get(`http://localhost:4000/subscription/${pushServerSubscriptionId}`).catch((error) => {
+    axios.get(`https://demo-be-push-notify.onrender.com/subscription/${pushServerSubscriptionId}`).catch((error) => {
       setLoading(false);
       setError(error);
     });
