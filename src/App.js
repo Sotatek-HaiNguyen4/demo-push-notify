@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import usePushNotifications from './usePushNotifications';
 import './App.css';
-import { AddToHomeScreen } from 'react-pwa-add-to-homescreen';
+import AddToHomeScreen from '@ideasio/add-to-homescreen-react';
 
 function App() {
   const {
