@@ -7,8 +7,25 @@ const pushNotificationSupported = serviceWorker.isPushNotificationSupported();
 
 const API_URL = 'https://demo-be-push-notify.onrender.com/subscription'
 
+function isIOS() {
+  const browserInfo = navigator.userAgent.toLowerCase();
+
+  if (browserInfo.match('iphone') || browserInfo.match('ipad')) {
+    return true;
+  }
+  if (['iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone', 'iPod'].includes(navigator.platform)) {
+    return true;
+  }
+  return false;
+}
+
+function isGranted() {
+  if (isIOS()) return;
+  return Notification.permission === "granted"
+}
+
 export default function usePushNotifications() {
-  const [userConsent, setSuserConsent] = useState(Notification.permission);
+  const [userConsent, setSuserConsent] = useState(isGranted());
   //to manage the user consent: Notification.permission is a JavaScript native function that return the current state of the permission
   //We initialize the userConsent with that value
   const [userSubscription, setUserSubscription] = useState(null);
