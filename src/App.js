@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div className='App'>
-      <AddToHomeScreen />
+      <AddToHomeScreen skipFirstVisit={false} displayPace={0} mustShowCustomPrompt={true} />
       <header className='App-header'>
         <img src={logo} className='App-logo' alt='logo' />
         <Loading loading={loading} />
