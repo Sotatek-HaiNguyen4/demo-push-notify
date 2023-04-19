@@ -31,13 +31,9 @@ function App() {
 
   const isConsentGranted = userConsent === 'granted';
 
-  const expireDays = {
-    expireDays: 0.0007
-  }
-
   return (
     <div className='App'>
-      <AddToHomeScreen cookie={expireDays} />
+      <AddToHomeScreen />
       <header className='App-header'>
         <img src={logo} className='App-logo' alt='logo' />
         <Loading loading={loading} />
