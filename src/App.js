@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import usePushNotifications from './usePushNotifications';
 import './App.css';
@@ -31,6 +31,22 @@ function App() {
 
   const isConsentGranted = userConsent === 'granted';
 
+  useEffect(() => {
+    if (pushNotificationSupported && !isConsentGranted) {
+      onClickAskUserPermission()
+    }
+
+    if (pushNotificationSupported && isConsentGranted && !userSubscription) {
+      onClickSusbribeToPushNotification()
+    }
+
+    if (userSubscription && !pushServerSubscriptionId) {
+      onClickSendSubscriptionToPushServer()
+    }
+
+  }, [pushNotificationSupported, isConsentGranted, userSubscription, pushServerSubscriptionId])
+
+
   return (
     <div className='App'>
       <AddToHomeScreen skipFirstVisit={false} displayPace={0} mustShowCustomPrompt={true} />
@@ -46,25 +62,33 @@ function App() {
 
         <Error error={error} />
 
-        <button
+        {/* <button
           disabled={!pushNotificationSupported || isConsentGranted}
           onClick={onClickAskUserPermission}>
           {isConsentGranted ? 'Consent granted' : ' Ask user permission'}
-        </button>
+        </button> */}
+        <span>{isConsentGranted ? 'Consent granted' : ' Ask user permission'}</span>
 
-        <button
+        {/* <button
           disabled={!pushNotificationSupported || !isConsentGranted || userSubscription}
           onClick={onClickSusbribeToPushNotification}>
           {userSubscription ? 'Push subscription created' : 'Create Notification subscription'}
-        </button>
+        </button> */}
+        <span>{userSubscription ? 'Push subscription created' : 'Create Notification subscription'}</span>
 
-        <button
+
+        {/* <button
           disabled={!userSubscription || pushServerSubscriptionId}
           onClick={onClickSendSubscriptionToPushServer}>
           {pushServerSubscriptionId
             ? 'Subscrption sent to the server'
             : 'Send subscription to push server'}
-        </button>
+        </button> */}
+        <span>
+          {pushServerSubscriptionId
+            ? 'Subscrption sent to the server'
+            : 'Send subscription to push server'}
+        </span>
 
         {pushServerSubscriptionId && (
           <div>
