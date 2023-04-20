@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import logo from './logo.svg';
@@ -35,14 +36,26 @@ function App() {
 
   useEffect(() => {
     if (pushNotificationSupported && !isConsentGranted) {
-      onClickAskUserPermission()
+      const checkAccess = confirm('Do you want to grant permission to receive notifications ?')
+      if (checkAccess) {
+        onClickAskUserPermission()
+        console.log('TH1');
+        return
+      } else {
+        console.log('TH2');
+        return
+      }
+
     }
 
     if (pushNotificationSupported && isConsentGranted && !userSubscription) {
+      console.log('TH3');
       onClickSusbribeToPushNotification()
     }
 
     if (userSubscription && !pushServerSubscriptionId) {
+      console.log('TH4');
+
       onClickSendSubscriptionToPushServer()
     }
 
