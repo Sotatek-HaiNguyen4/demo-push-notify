@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-restricted-globals */
+
 function receivePushNotification(event) {
   console.log('[Service Worker] Push Received.');
 

@@ -20,7 +20,7 @@ function isIOS() {
 }
 
 function isGranted() {
-  if (isIOS()) return;
+  // if (isIOS()) return;
   return Notification.permission === "granted"
 }
 
@@ -143,14 +143,7 @@ export default function usePushNotifications() {
     setLoading(false);
   };
 
-  // check browser sp app badge
-  const checkBrowserSpAppBadge = () => {
-    if (navigator.setAppBadge) {
-      console.log('The API is supported, use it.');
-    } else {
-      console.log("The API is not supported, don't use it.");
-    }
-  }
+
 
   return {
     onClickAskUserPermission,
@@ -163,6 +156,5 @@ export default function usePushNotifications() {
     userSubscription,
     error,
     loading,
-    checkBrowserSpAppBadge
   };
 }

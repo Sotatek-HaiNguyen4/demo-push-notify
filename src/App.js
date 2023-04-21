@@ -19,7 +19,6 @@ function App() {
     onClickSendNotification,
     error,
     loading,
-    checkBrowserSpAppBadge
   } = usePushNotifications();
 
   const Loading = ({ loading }) =>
@@ -64,10 +63,6 @@ function App() {
 
   // check router
   const pathname = window.location.pathname
-
-  useEffect(() => {
-    checkBrowserSpAppBadge()
-  }, []);
 
   return (
     <div>
