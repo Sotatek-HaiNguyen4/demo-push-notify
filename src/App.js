@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import usePushNotifications from './usePushNotifications';
 import './App.css';
@@ -34,32 +34,23 @@ function App() {
 
   const isConsentGranted = userConsent === 'granted';
 
-  // useEffect(() => {
-  //   if (pushNotificationSupported && !isConsentGranted) {
-  //     const checkAccess = confirm('Do you want to grant permission to receive notifications ?')
-  //     if (checkAccess) {
-  //       onClickAskUserPermission()
-  //       console.log('TH1');
-  //       return
-  //     } else {
-  //       console.log('TH2');
-  //       return
-  //     }
+  useEffect(() => {
+    if (pushNotificationSupported && !isConsentGranted) {
+      onClickAskUserPermission()
+    }
+  }, [pushNotificationSupported, isConsentGranted])
 
-  //   }
+  useEffect(() => {
+    if (pushNotificationSupported && isConsentGranted && !userSubscription) {
+      onClickSusbribeToPushNotification()
+    }
+  }, [pushNotificationSupported, isConsentGranted, userSubscription]);
 
-  //   if (pushNotificationSupported && isConsentGranted && !userSubscription) {
-  //     console.log('TH3');
-  //     onClickSusbribeToPushNotification()
-  //   }
-
-  //   if (userSubscription && !pushServerSubscriptionId) {
-  //     console.log('TH4');
-
-  //     onClickSendSubscriptionToPushServer()
-  //   }
-
-  // }, [pushNotificationSupported, isConsentGranted, userSubscription, pushServerSubscriptionId])
+  useEffect(() => {
+    if (userSubscription && !pushServerSubscriptionId) {
+      onClickSendSubscriptionToPushServer()
+    }
+  }, [userSubscription, pushServerSubscriptionId]);
 
   // check router
   const pathname = window.location.pathname

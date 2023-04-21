@@ -7,20 +7,20 @@ const pushNotificationSupported = serviceWorker.isPushNotificationSupported();
 
 const API_URL = 'https://demo-be-push-notify.onrender.com/subscription'
 
-// function isIOS() {
-//   const browserInfo = navigator.userAgent.toLowerCase();
+function isIOS() {
+  const browserInfo = navigator.userAgent.toLowerCase();
 
-//   if (browserInfo.match('iphone') || browserInfo.match('ipad')) {
-//     return true;
-//   }
-//   if (['iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone', 'iPod'].includes(navigator.platform)) {
-//     return true;
-//   }
-//   return false;
-// }
+  if (browserInfo.match('iphone') || browserInfo.match('ipad')) {
+    return true;
+  }
+  if (['iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone', 'iPod'].includes(navigator.platform)) {
+    return true;
+  }
+  return false;
+}
 
 function isGranted() {
-  // if (isIOS()) return;
+  if (isIOS()) return;
   return Notification.permission === "granted"
 }
 
