@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import usePushNotifications from './usePushNotifications';
 import './App.css';
