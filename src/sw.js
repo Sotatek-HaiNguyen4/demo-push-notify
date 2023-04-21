@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-restricted-globals */
 function receivePushNotification(event) {
   console.log('[Service Worker] Push Received.');
 
@@ -14,6 +16,19 @@ function receivePushNotification(event) {
     actions: [{ action: 'Detail', title: 'View', icon: 'https://via.placeholder.com/128/ff0000' }]
   };
   event.waitUntil(self.registration.showNotification(title, options));
+
+  // Extract the unread count from the push message data.
+  const message = event.data.json();
+  const unreadCount = message.unreadCount;
+
+  // Set or clear the badge.
+  if (navigator.setAppBadge) {
+    if (unreadCount && unreadCount > 0) {
+      navigator.setAppBadge(unreadCount);
+    } else {
+      navigator.clearAppBadge();
+    }
+  }
 }
 
 function openPushNotification(event) {
