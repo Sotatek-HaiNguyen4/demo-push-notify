@@ -18,7 +18,8 @@ function App() {
     pushServerSubscriptionId,
     onClickSendNotification,
     error,
-    loading
+    loading,
+    checkBrowserSpAppBadge
   } = usePushNotifications();
 
   const Loading = ({ loading }) =>
@@ -34,35 +35,39 @@ function App() {
 
   const isConsentGranted = userConsent === 'granted';
 
-  useEffect(() => {
-    if (pushNotificationSupported && !isConsentGranted) {
-      const checkAccess = confirm('Do you want to grant permission to receive notifications ?')
-      if (checkAccess) {
-        onClickAskUserPermission()
-        console.log('TH1');
-        return
-      } else {
-        console.log('TH2');
-        return
-      }
+  // useEffect(() => {
+  //   if (pushNotificationSupported && !isConsentGranted) {
+  //     const checkAccess = confirm('Do you want to grant permission to receive notifications ?')
+  //     if (checkAccess) {
+  //       onClickAskUserPermission()
+  //       console.log('TH1');
+  //       return
+  //     } else {
+  //       console.log('TH2');
+  //       return
+  //     }
 
-    }
+  //   }
 
-    if (pushNotificationSupported && isConsentGranted && !userSubscription) {
-      console.log('TH3');
-      onClickSusbribeToPushNotification()
-    }
+  //   if (pushNotificationSupported && isConsentGranted && !userSubscription) {
+  //     console.log('TH3');
+  //     onClickSusbribeToPushNotification()
+  //   }
 
-    if (userSubscription && !pushServerSubscriptionId) {
-      console.log('TH4');
+  //   if (userSubscription && !pushServerSubscriptionId) {
+  //     console.log('TH4');
 
-      onClickSendSubscriptionToPushServer()
-    }
+  //     onClickSendSubscriptionToPushServer()
+  //   }
 
-  }, [pushNotificationSupported, isConsentGranted, userSubscription, pushServerSubscriptionId])
+  // }, [pushNotificationSupported, isConsentGranted, userSubscription, pushServerSubscriptionId])
 
   // check router
   const pathname = window.location.pathname
+
+  useEffect(() => {
+    checkBrowserSpAppBadge()
+  }, []);
 
   return (
     <div>
@@ -81,33 +86,33 @@ function App() {
 
             <Error error={error} />
 
-            {/* <button
-          disabled={!pushNotificationSupported || isConsentGranted}
-          onClick={onClickAskUserPermission}>
-          {isConsentGranted ? 'Consent granted' : ' Ask user permission'}
-        </button> */}
-            <span>{isConsentGranted ? 'Consent granted' : ' Ask user permission'}</span>
+            <button
+              disabled={!pushNotificationSupported || isConsentGranted}
+              onClick={onClickAskUserPermission}>
+              {isConsentGranted ? 'Consent granted' : ' Ask user permission'}
+            </button>
+            {/* <span>{isConsentGranted ? 'Consent granted' : ' Ask user permission'}</span> */}
 
-            {/* <button
-          disabled={!pushNotificationSupported || !isConsentGranted || userSubscription}
-          onClick={onClickSusbribeToPushNotification}>
-          {userSubscription ? 'Push subscription created' : 'Create Notification subscription'}
-        </button> */}
-            <span>{userSubscription ? 'Push subscription created' : 'Create Notification subscription'}</span>
+            <button
+              disabled={!pushNotificationSupported || !isConsentGranted || userSubscription}
+              onClick={onClickSusbribeToPushNotification}>
+              {userSubscription ? 'Push subscription created' : 'Create Notification subscription'}
+            </button>
+            {/* <span>{userSubscription ? 'Push subscription created' : 'Create Notification subscription'}</span> */}
 
 
-            {/* <button
-          disabled={!userSubscription || pushServerSubscriptionId}
-          onClick={onClickSendSubscriptionToPushServer}>
-          {pushServerSubscriptionId
-            ? 'Subscrption sent to the server'
-            : 'Send subscription to push server'}
-        </button> */}
-            <span>
+            <button
+              disabled={!userSubscription || pushServerSubscriptionId}
+              onClick={onClickSendSubscriptionToPushServer}>
               {pushServerSubscriptionId
                 ? 'Subscrption sent to the server'
                 : 'Send subscription to push server'}
-            </span>
+            </button>
+            {/* <span>
+              {pushServerSubscriptionId
+                ? 'Subscrption sent to the server'
+                : 'Send subscription to push server'}
+            </span> */}
 
             {pushServerSubscriptionId && (
               <div>

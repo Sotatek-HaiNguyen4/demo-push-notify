@@ -143,6 +143,16 @@ export default function usePushNotifications() {
     setLoading(false);
   };
 
+  // check browser sp app badge
+  const checkBrowserSpAppBadge = () => {
+    if (navigator.setAppBadge) {
+      navigator.setAppBadge(1);
+      console.log('The API is supported, use it.');
+    } else {
+      console.log("The API is not supported, don't use it.");
+    }
+  }
+
   return {
     onClickAskUserPermission,
     onClickSusbribeToPushNotification,
@@ -153,6 +163,7 @@ export default function usePushNotifications() {
     pushNotificationSupported,
     userSubscription,
     error,
-    loading
+    loading,
+    checkBrowserSpAppBadge
   };
 }
