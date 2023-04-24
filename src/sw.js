@@ -33,6 +33,7 @@ function receivePushNotification(event) {
 
   const unreadCount = 2;
   navigator.setAppBadge(unreadCount);
+  alert('You have 2 notify')
 }
 
 function openPushNotification(event) {
