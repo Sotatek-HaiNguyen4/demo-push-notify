@@ -32,8 +32,9 @@ function receivePushNotification(event) {
   // }
 
   const unreadCount = 2;
-  navigator.setAppBadge(unreadCount);
-  alert('You have 2 notify')
+  navigator.setAppBadge(unreadCount).catch((error) => {
+    window.alert('Loi:', error)
+  });
 }
 
 function openPushNotification(event) {
