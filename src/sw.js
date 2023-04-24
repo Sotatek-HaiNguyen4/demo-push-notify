@@ -32,9 +32,6 @@ async function receivePushNotification(event) {
   // }
 
   const unreadCount = 2;
-  // navigator.setAppBadge(unreadCount).catch((error) => {
-  //   window.alert('Loi:', error)
-  // });
 
   try {
     await navigator.setAppBadge(unreadCount);
