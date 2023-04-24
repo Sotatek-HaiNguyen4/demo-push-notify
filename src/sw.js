@@ -38,14 +38,9 @@ async function receivePushNotification(event) {
 
   try {
     await navigator.setAppBadge(unreadCount);
-    window.alert('Add thong bao success:')
     console.log('Add thong bao success:');
   } catch (e) {
-    // The badge is not supported, or the user has prevented the app
-    // from setting a badge.
-    window.alert('Error', e)
     console.log('Error', e);
-
   }
 }
 
