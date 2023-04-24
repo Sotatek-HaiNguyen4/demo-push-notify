@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-restricted-globals */
 
-function receivePushNotification(event) {
+async function receivePushNotification(event) {
   console.log('[Service Worker] Push Received.');
 
   const { image, tag, url, title, text } = event.data.json();
@@ -32,9 +32,21 @@ function receivePushNotification(event) {
   // }
 
   const unreadCount = 2;
-  navigator.setAppBadge(unreadCount).catch((error) => {
-    window.alert('Loi:', error)
-  });
+  // navigator.setAppBadge(unreadCount).catch((error) => {
+  //   window.alert('Loi:', error)
+  // });
+
+  try {
+    await navigator.setAppBadge(unreadCount);
+    window.alert('Add thong bao success:')
+    console.log('Add thong bao success:');
+  } catch (e) {
+    // The badge is not supported, or the user has prevented the app
+    // from setting a badge.
+    window.alert('Error', e)
+    console.log('Error', e);
+
+  }
 }
 
 function openPushNotification(event) {
