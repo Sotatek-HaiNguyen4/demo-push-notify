@@ -55,6 +55,14 @@ function App() {
   // check router
   const pathname = window.location.pathname
 
+  useEffect(() => {
+    if ("setAppBadge" in navigator && "clearAppBadge" in navigator) {
+      alert("Your web browser and O.S. support Badges")
+    } else {
+      alert("Your web browser and O.S. DON'T support Badges :( ")
+    }
+  }, []);
+
   return (
     <div>
       {
