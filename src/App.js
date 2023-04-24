@@ -55,7 +55,7 @@ function App() {
   // check router
   const pathname = window.location.pathname
 
-  const unreadCount = 10;
+  const unreadCount = "10";
 
   try {
     navigator.setAppBadge(unreadCount);
