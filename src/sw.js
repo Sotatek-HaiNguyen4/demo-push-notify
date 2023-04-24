@@ -31,14 +31,7 @@ async function receivePushNotification(event) {
   //   }
   // }
 
-  const unreadCount = 2;
 
-  try {
-    await navigator.setAppBadge(unreadCount);
-    console.log('Add thong bao success:');
-  } catch (e) {
-    console.log('Error', e);
-  }
 }
 
 function openPushNotification(event) {
