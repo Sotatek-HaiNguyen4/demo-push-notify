@@ -55,15 +55,6 @@ function App() {
   // check router
   const pathname = window.location.pathname
 
-  const unreadCount = "10";
-
-  try {
-    navigator.setAppBadge(unreadCount);
-    console.log('Add thong bao success:');
-  } catch (e) {
-    console.log('Error', e);
-  }
-
   return (
     <div>
       {
