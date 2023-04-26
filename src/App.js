@@ -6,7 +6,6 @@ import usePushNotifications from './usePushNotifications';
 import './App.css';
 import AddToHomeScreen from '@ideasio/add-to-homescreen-react';
 import Notify from './Notify';
-import PWABadge from 'pwa-badge';
 import liff from '@line/liff';
 
 liff.init({ liffId: '1660979956-EN362Bro' });
@@ -66,13 +65,6 @@ function App() {
 
   // check router
   const pathname = window.location.pathname
-
-  const badge = new PWABadge();
-
-  useEffect(() => {
-    badge.syncSetBadge(7);
-  }, []);
-
 
   return (
     <div>
