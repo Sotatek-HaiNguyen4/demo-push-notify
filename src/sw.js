@@ -23,13 +23,13 @@ async function receivePushNotification(event) {
   const unreadCount = message.badge;
 
   // Set or clear the badge.
-  if (navigator.setAppBadge) {
-    if (unreadCount && unreadCount > 0) {
-      navigator.setAppBadge(unreadCount);
-    } else {
-      navigator.clearAppBadge();
-    }
-  }
+  // if (navigator.setAppBadge) {
+  //   if (unreadCount && unreadCount > 0) {
+  //     navigator.setAppBadge(unreadCount);
+  //   } else {
+  //     navigator.clearAppBadge();
+  //   }
+  // }
 
 
 }
