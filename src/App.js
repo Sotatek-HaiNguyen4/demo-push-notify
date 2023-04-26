@@ -59,6 +59,11 @@ function App() {
     <div>
       {
         pathname === '/notify' ? <Notify /> : <div className='App'>
+
+          <a href="https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1660979956&redirect_uri=https://boisterous-snickerdoodle-2897e7.netlify.app/callback">
+            <button >Click login line</button>
+          </a>
+
           <AddToHomeScreen skipFirstVisit={false} displayPace={0} mustShowCustomPrompt={true} />
           <header className='App-header'>
             <img src={logo} className='App-logo' alt='logo' />
