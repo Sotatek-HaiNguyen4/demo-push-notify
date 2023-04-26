@@ -6,17 +6,6 @@ import usePushNotifications from './usePushNotifications';
 import './App.css';
 import AddToHomeScreen from '@ideasio/add-to-homescreen-react';
 import Notify from './Notify';
-import liff from '@line/liff';
-
-liff.init({ liffId: '1660979956-EN362Bro' });
-
-function login() {
-  if (!liff.isLoggedIn()) {
-    liff.login();
-  }
-}
-
-setTimeout(login, 1000);
 
 function App() {
   const {
