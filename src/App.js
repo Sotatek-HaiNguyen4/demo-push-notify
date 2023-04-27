@@ -8,6 +8,7 @@ import AddToHomeScreen from '@ideasio/add-to-homescreen-react';
 import Notify from './Notify';
 import axios from 'axios';
 import { useState } from 'react';
+import IconLine from '../src/image/icon-line.png'
 
 function App() {
   const [inforUser, setInforUser] = useState();
@@ -60,12 +61,11 @@ function App() {
   // check router
   const pathname = window.location.pathname
   const search = window.location.search;
-  console.log('search: ', search);
 
   useEffect(() => {
     const checkIndexOfCode = search.indexOf('code=')
     const codeKey = search.slice(checkIndexOfCode + 5, checkIndexOfCode + 25)
-    alert(`keyCode: ${codeKey}`)
+    // alert(`keyCode: ${codeKey}`)
 
     if (!codeKey || codeKey.length !== 20) return
 
@@ -137,16 +137,20 @@ function App() {
       {
         pathname === '/notify' ? <Notify /> : <div className='App'>
 
-          {
-            !inforUser && <a href="https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1660979956&redirect_uri=https://boisterous-snickerdoodle-2897e7.netlify.app/callback&state=12345abcde&scope=profile%20openid&nonce=09876xyz">
-              <button >Login with Line</button>
-            </a>
-          }
-
           <h1>Hello: {inforUser?.name}</h1>
           {
             inforUser && <button onClick={callApiLogout} >Logout</button>
           }
+
+          {
+            !inforUser &&
+            <div style={{ display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
+              <h3>Login with: </h3> <a href="https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1660979956&redirect_uri=https://boisterous-snickerdoodle-2897e7.netlify.app/callback&state=12345abcde&scope=profile%20openid&nonce=09876xyz"> <img src={IconLine} style={{ cursor: "pointer", marginLeft: '10px' }} alt='icon' width={70} height={70} />  </a>
+            </div>
+
+          }
+
+
 
           <AddToHomeScreen skipFirstVisit={false} displayPace={0} mustShowCustomPrompt={true} />
           <header className='App-header'>
