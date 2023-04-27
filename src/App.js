@@ -62,6 +62,7 @@ function App() {
   const search = window.location.search;
 
   useEffect(() => {
+    alert(window.location)
     const codeLine = search?.slice(6, 26)
     if (!codeLine) return
 
@@ -96,8 +97,6 @@ function App() {
         })
 
         setInforUser(dataInfo?.data)
-
-        console.log('dataInfo: ', dataInfo);
       } catch (error) {
         console.log('error: ', error);
       }
@@ -106,7 +105,8 @@ function App() {
 
 
 
-  }, [window.location.search]);
+  }, [window.location]);
+
 
   const callApiLogout = () => {
     const params = new URLSearchParams();
@@ -138,8 +138,6 @@ function App() {
               <button >Login with Line</button>
             </a>
           }
-
-
 
           <h1>Hello: {inforUser?.name}</h1>
           {
