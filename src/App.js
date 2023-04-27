@@ -138,9 +138,6 @@ function App() {
         pathname === '/notify' ? <Notify /> : <div className='App'>
 
           <h1>Hello: {inforUser?.name}</h1>
-          {
-            inforUser && <button onClick={callApiLogout} >Logout</button>
-          }
 
           {
             !inforUser &&
@@ -148,6 +145,10 @@ function App() {
               <h3>Login with: </h3> <a href="https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1660979956&redirect_uri=https://boisterous-snickerdoodle-2897e7.netlify.app/callback&state=12345abcde&scope=profile%20openid&nonce=09876xyz"> <img src={IconLine} style={{ cursor: "pointer", marginLeft: '10px' }} alt='icon' width={70} height={70} />  </a>
             </div>
 
+          }
+
+          {
+            inforUser && <h3 onClick={callApiLogout}>Logout now</h3>
           }
 
 
