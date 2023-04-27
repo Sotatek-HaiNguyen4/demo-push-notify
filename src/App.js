@@ -60,15 +60,18 @@ function App() {
   // check router
   const pathname = window.location.pathname
   const search = window.location.search;
+  console.log('search: ', search);
 
   useEffect(() => {
-    alert(window.location)
-    const codeLine = search?.slice(6, 26)
-    if (!codeLine) return
+    const checkIndexOfCode = search.indexOf('code=')
+    const codeKey = search.slice(checkIndexOfCode + 5, checkIndexOfCode + 25)
+    alert(`keyCode: ${codeKey}`)
+
+    if (!codeKey || codeKey.length !== 20) return
 
     const params = new URLSearchParams();
     params.append('grant_type', 'authorization_code');
-    params.append('code', codeLine);
+    params.append('code', codeKey);
     params.append('client_id', '1660979956');
     params.append('redirect_uri', 'https://boisterous-snickerdoodle-2897e7.netlify.app/callback');
     params.append('client_secret', '0e98c077d063b3eb88dada5a6ac50701');
@@ -97,6 +100,8 @@ function App() {
         })
 
         setInforUser(dataInfo?.data)
+
+        console.log('dataInfo: ', dataInfo);
       } catch (error) {
         console.log('error: ', error);
       }
@@ -105,8 +110,7 @@ function App() {
 
 
 
-  }, [window.location]);
-
+  }, [window.location.search]);
 
   const callApiLogout = () => {
     const params = new URLSearchParams();
