@@ -142,7 +142,7 @@ function App() {
           {
             !inforUser &&
             <div style={{ display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
-              <h3>Login with: </h3> <a href="https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1660979956&redirect_uri=https://boisterous-snickerdoodle-2897e7.netlify.app/callback&state=12345abcde&scope=profile%20openid&nonce=09876xyz&disable_ios_auto_login=true"> <img src={IconLine} style={{ cursor: "pointer", marginLeft: '10px' }} alt='icon' width={70} height={70} />  </a>
+              <h3>Login with: </h3> <a href="https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1660979956&redirect_uri=https://boisterous-snickerdoodle-2897e7.netlify.app/callback&state=12345abcde&scope=profile%20openid&nonce=09876xyz&disable_ios_auto_login=true&disable_auto_login=true"> <img src={IconLine} style={{ cursor: "pointer", marginLeft: '10px' }} alt='icon' width={70} height={70} />  </a>
             </div>
 
           }
