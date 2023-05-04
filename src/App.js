@@ -9,6 +9,19 @@ import Notify from './Notify';
 import axios from 'axios';
 import { useState } from 'react';
 import IconLine from '../src/image/icon-line.png'
+import GoogleMapReact from 'google-map-react';
+import IconLocation from '../src/image/icon-location-red.png'
+import Marker from '../src/image/Marker';
+
+const AnyReactComponent = ({ text }) => <div><Marker /></div>;
+
+const defaultProps = {
+  center: {
+    lat: 21.017394,
+    lng: 105.828038
+  },
+  zoom: 17
+};
 
 function App() {
   const [inforUser, setInforUser] = useState();
@@ -151,9 +164,22 @@ function App() {
             inforUser && <h3 onClick={callApiLogout}>Logout now</h3>
           }
 
-
-
           <AddToHomeScreen skipFirstVisit={false} displayPace={0} mustShowCustomPrompt={true} />
+
+          <div style={{ height: '100vh', width: '100%' }}>
+            <GoogleMapReact
+              bootstrapURLKeys={{ key: "AIzaSyDHJ5HoRYVIAGVVoazzq3fptE67yu291kY" }}
+              defaultCenter={defaultProps.center}
+              defaultZoom={defaultProps.zoom}
+            >
+              <AnyReactComponent
+                lat={21.017394}
+                lng={105.828038}
+                text="My Marker"
+              />
+            </GoogleMapReact>
+          </div>
+
           <header className='App-header'>
             <img src={logo} className='App-logo' alt='logo' />
             <Loading loading={loading} />
