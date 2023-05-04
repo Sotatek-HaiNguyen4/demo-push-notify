@@ -17,8 +17,8 @@ const AnyReactComponent = ({ text }) => <div><Marker /></div>;
 
 const defaultProps = {
   center: {
-    lat: 21.017394,
-    lng: 105.828038
+    lat: 21.0243911,
+    lng: 105.789737
   },
   zoom: 17
 };
@@ -144,6 +144,18 @@ function App() {
     handleRemoveToken()
   }
 
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+  }, []);
+
+  const successCallback = (position) => {
+    console.log(position);
+  };
+
+  const errorCallback = (error) => {
+    console.log(error);
+  };
+
 
   return (
     <div>
@@ -173,8 +185,8 @@ function App() {
               defaultZoom={defaultProps.zoom}
             >
               <AnyReactComponent
-                lat={21.017394}
-                lng={105.828038}
+                lat={21.0243911}
+                lng={105.789737}
                 text="My Marker"
               />
             </GoogleMapReact>
