@@ -10,7 +10,6 @@ import axios from 'axios';
 import { useState } from 'react';
 import IconLine from '../src/image/icon-line.png'
 import GoogleMapReact from 'google-map-react';
-import IconLocation from '../src/image/icon-location-red.png'
 import Marker from '../src/image/Marker';
 
 const AnyReactComponent = ({ text }) => <div><Marker /></div>;
