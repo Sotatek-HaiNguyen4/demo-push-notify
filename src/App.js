@@ -11,20 +11,25 @@ import { useState } from 'react';
 import IconLine from '../src/image/icon-line.png'
 import GoogleMapReact from 'google-map-react';
 import Marker from '../src/image/Marker';
+import IconShop from '../src/image/icon-shop-location.png'
 
-const AnyReactComponent = ({ text }) => <div><Marker /></div>;
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 const defaultProps = {
   center: {
     lat: 21.0243911,
     lng: 105.789737
   },
-  zoom: 17
+  zoom: 15
 };
 
 function App() {
   const [inforUser, setInforUser] = useState();
   const [accessToken, setAccessToken] = useState('');
+  const [myLocation, setmyLocation] = useState({
+    lat: '',
+    lng: ''
+  });
 
   const {
     userConsent,
@@ -118,10 +123,6 @@ function App() {
         console.log('error: ', error);
       }
     }
-
-
-
-
   }, [window.location.search]);
 
   const callApiLogout = () => {
@@ -149,6 +150,10 @@ function App() {
 
   const successCallback = (position) => {
     console.log(position);
+    setmyLocation({
+      lat: position?.coords?.latitude,
+      lng: position?.coords?.longitude
+    })
   };
 
   const errorCallback = (error) => {
@@ -184,9 +189,24 @@ function App() {
               defaultZoom={defaultProps.zoom}
             >
               <AnyReactComponent
-                lat={21.0243911}
-                lng={105.789737}
-                text="My Marker"
+                lat={myLocation.lat}
+                lng={myLocation.lng}
+                text={<Marker />}
+              />
+              <AnyReactComponent
+                lat={21.020333}
+                lng={105.790111}
+                text={<><img src={IconShop} width={30} alt='' /></>}
+              />
+              <AnyReactComponent
+                lat={21.019997}
+                lng={105.791839}
+                text={<><img src={IconShop} width={30} alt='' /></>}
+              />
+              <AnyReactComponent
+                lat={21.020924}
+                lng={105.791308}
+                text={<><img src={IconShop} width={30} alt='' /></>}
               />
             </GoogleMapReact>
           </div>
